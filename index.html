@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClearSkin AI | Advanced Acne Analysis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --primary: #3498db; --bg: #f8fafc; --text: #1e293b; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        .card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; max-width: 450px; width: 90%; }
+        .logo { font-size: 40px; color: var(--primary); margin-bottom: 20px; }
+        h1 { margin: 0 0 10px; font-weight: 600; font-size: 28px; }
+        p { color: #64748b; line-height: 1.6; margin-bottom: 30px; }
+        
+        /* Modern Upload Box */
+        .upload-area { border: 2px dashed #cbd5e1; padding: 40px; border-radius: 16px; cursor: pointer; transition: 0.3s; background: #f1f5f9; position: relative; }
+        .upload-area:hover { border-color: var(--primary); background: #eff6ff; }
+        input[type="file"] { position: absolute; width: 100%; height: 100%; top: 0; left: 0; opacity: 0; cursor: pointer; }
+        
+        .btn-analyze { background: var(--primary); color: white; border: none; padding: 16px; border-radius: 12px; width: 100%; font-size: 16px; font-weight: 600; margin-top: 20px; cursor: pointer; transition: 0.3s; }
+        .btn-analyze:hover { background: #2980b9; transform: translateY(-2px); }
+        .file-name { margin-top: 15px; font-size: 14px; color: var(--primary); font-weight: 600; display: none; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logo"><i class="fas fa-microscope"></i></div>
+        <h1>ClearSkin AI</h1>
+        <p>Our deep learning model analyzes skin patterns to provide a personalized treatment roadmap.</p>
+        
+        <form action="/analyze" method="post" enctype="multipart/form-data">
+            <div class="upload-area">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 30px; color: #94a3b8;"></i>
+                <p id="label-text" style="margin: 10px 0 0;">Drag & drop or click to upload</p>
+                <input type="file" name="file" id="skinPhoto" accept="image/*" required onchange="updateLabel()">
+                <div id="fileName" class="file-name"></div>
+            </div>
+            <button type="submit" class="btn-analyze">Run AI Analysis</button>
+        </form>
+        
+        <div style="font-size: 11px; color: #94a3b8; margin-top: 25px;">
+            <i class="fas fa-shield-alt"></i> Your data is processed securely and privately.
+        </div>
+    </div>
+
+    <script>
+        function updateLabel() {
+            const input = document.getElementById('skinPhoto');
+            const nameDiv = document.getElementById('fileName');
+            const labelText = document.getElementById('label-text');
+            if (input.files.length > 0) {
+                nameDiv.innerText = "Selected: " + input.files[0].name;
+                nameDiv.style.display = "block";
+                labelText.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
